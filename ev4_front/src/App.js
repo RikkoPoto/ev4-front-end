@@ -177,12 +177,12 @@ function App() {
                           </td>
                           <td>
                             {prod.descuento > 0 ? (
-                              <span className="badge bg-info text-dark rounded-pill px-2">{prod.descuento}%</span>
+                              <span className="badge bg-info text-dark rounded-pill px-3">{prod.descuento}%</span>
                             ) : (
                               <span className="text-muted">-</span>
                             )}
                           </td>
-                          <td className="text-success fw-bold">${prod.precio - (prod.precio * prod.descuento / 100)}</td>
+                          <td className="text-success fw-bold">${(prod.precio - (prod.precio * prod.descuento / 100)).toFixed(0)}</td>
                           <td>
                             <button className="btn btn-sm btn-outline-primary rounded-circle me-2 btn-animado" onClick={() => handleEdit(prod)} title="Editar">
                               ✏️

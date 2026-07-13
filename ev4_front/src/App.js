@@ -12,19 +12,25 @@ function App() {
     descuento: ''
   };
 
-  const [productos, setProductos] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
   const [busqueda, setBusqueda] = useState('');
   const [editando, setEditando] = useState(false);
 
-  useEffect(() => {
-    const datosGuardados = localStorage.getItem('productosElectronicos');
-    if (datosGuardados) setProductos(JSON.parse(datosGuardados));
-  }, []);
-
+  const [productos, setProductos] = useState(() => {
+    try {
+      const datosGuardados = localStorage.getItem('productosElectronicos');
+      // Si hay datos, los parsea. Si no, devuelve un arreglo vacío.
+      return datosGuardados ? JSON.parse(datosGuardados) : [];
+    } catch (error) {
+      // Si los datos están corruptos y JSON.parse falla, atrapa el error y evita que se rompa
+      console.error("Error leyendo el Local Storage, iniciando vacío.", error);
+      return []; 
+    }
+  });
   useEffect(() => {
     localStorage.setItem('productosElectronicos', JSON.stringify(productos));
   }, [productos]);
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;

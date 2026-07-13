@@ -22,7 +22,7 @@ function App() {
       // Si hay datos, los parsea. Si no, devuelve un arreglo vacío.
       return datosGuardados ? JSON.parse(datosGuardados) : [];
     } catch (error) {
-      // Si los datos están corruptos y JSON.parse falla, atrapa el error y evita que se rompa
+      // Si los datos están corruptos y JSON.parse falla, avisa en consola -error fix 0.5-
       console.error("Error leyendo el Local Storage, iniciando vacío.", error);
       return []; 
     }
@@ -201,8 +201,8 @@ function App() {
                       ))
                     ) : (
                       <tr>
-                        <td colSpan="7" className="text-center py-5 text-muted">
-                          <div className="fs-1 mb-2">📦</div>
+                        <td colSpan="7" className="text-center py-3 text-muted">
+                          <div className="fs-1 mb-4">📦</div>
                           No se encontraron productos en el inventario.
                         </td>
                       </tr>
